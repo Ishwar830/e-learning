@@ -5,16 +5,6 @@ import CourseDetail from "./pages/CourseDetails";
 import CourseList from "./pages/CourseListView";
 import CourseListView from "./pages/CourseListView";
 
-function RootLayout(){
-  return(
-    <>
-      <Header/>
-      <CourseListView></CourseListView>
-      <Footer/>
-    </>
-  );
-}
-
 
 function App() {
    return (

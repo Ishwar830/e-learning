@@ -1,5 +1,6 @@
 import CourseCard from "../components/CourseCard";
 import { ChevronRight } from "lucide-react";
+import { Link } from "react-router";
 
 function Home() {
    return (
@@ -17,13 +18,15 @@ function Home() {
             <div className="flex items-center justify-between py-2 px-4">
                <h2 className="text-xl">Trending</h2>
                <p className="flex items-center">
-                  Browse All
-                  <ChevronRight size={20}/>
+                  <Link to="/courses">Browse All</Link>
+                  <ChevronRight size={20} />
                </p>
             </div>
             <ul className="grid gap-4">
                <li>
-                  <CourseCard />
+                  <Link to="/courses/0">
+                     <CourseCard />
+                  </Link>
                </li>
                <li>
                   <CourseCard />
