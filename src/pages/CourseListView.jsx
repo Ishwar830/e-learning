@@ -1,40 +1,103 @@
 import { Search } from "lucide-react";
 import CourseList from "../components/CourseList";
+import { useLoaderData, useSearchParams } from "react-router";
+import { useEffect, useState } from "react";
+
+function useDebouncedValue(value, delay = 300) {
+   const [debouncedValue, setDebouncedValue] = useState(value);
+
+   useEffect(() => {
+      const timerId = setTimeout(() => {
+         setDebouncedValue(value);
+      }, delay);
+
+      return () => clearTimeout(timerId);
+   }, [value, delay]);
+
+   return debouncedValue;
+}
 
 export default function CourseListView() {
+   const { courses } = useLoaderData();
+   const [searchParams, setSearchParams] = useSearchParams();
+
+   const [query, setQuery] = useState(searchParams.get("query") || "");
+   const currentLevel = searchParams.get("level") || "";
+   const currentSort = searchParams.get("sortBy") || "";
+
+   const debouncedInput = useDebouncedValue(query);
+
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, []);
+
+   useEffect(() => {
+      setSearchParams((prev) =>{
+         const newParams = new URLSearchParams(prev);
+         newParams.set("query", debouncedInput);
+         return newParams;
+      });
+
+   }, [debouncedInput, setSearchParams])
+
+   function handleFilterChange(e) {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set("level", e.target.value);
+      setSearchParams(newParams);
+   }
+
+   function handleSortChange(e) {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set("sortBy", e.target.value);
+      setSearchParams(newParams);
+   }
+
    return (
       <section className=" grid gap-4 p-4">
          <div className="grid gap-4">
             <div className="flex gap-2 items-center">
-               <search className="flex-1 border rounded-md h-8 p-1"></search>
+               <input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="flex-1 border rounded-sm p-1"
+                  name="query"
+                  type="search"
+               />
                <Search />
             </div>
             <div className="flex gap-2">
                <p className="flex gap-2">
-                  <label htmlFor="filter-courses">Filter</label>
+                  <label htmlFor="level">Level</label>
                   <select
+                     value={currentLevel}
+                     onChange={handleFilterChange}
                      className="border"
-                     name="filter-courses"
-                     id="filter-courses"
+                     name="level"
+                     id="level"
                   >
-                     <option value="owned">Owned</option>
-                     <option value="not owned">Not Owned</option>
+                     <option value="">---</option>
+                     <option value="Beginner">Beginner</option>
+                     <option value="Intermediate">Intermediate</option>
+                     <option value="Advanced">Advanced</option>
                   </select>
                </p>
                <p className="flex gap-2">
-                  <label htmlFor="sort-courses">Sort</label>
+                  <label htmlFor="sortBy">Sort</label>
                   <select
+                     value={currentSort}
+                     onChange={handleSortChange}
                      className="border"
-                     name="sort-courses"
-                     id="sort-courses"
+                     name="sortBy"
+                     id="sortBy"
                   >
+                     <option value="">---</option>
                      <option value="popularity">Popularity</option>
-                     <option value="ratings">Ratings</option>
+                     <option value="rating">Rating</option>
                   </select>
                </p>
             </div>
          </div>
-         <CourseList />
+         <CourseList courses={courses} />
       </section>
    );
 }

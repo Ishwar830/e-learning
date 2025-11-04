@@ -11,11 +11,16 @@ export default function RootLayout() {
    const closeSideBar = () => setIsSideBarOpen(false);
 
    return (
-      <>
-         {<SideNavBar isSideBarOpen={isSideBarOpen} closeSideBar={closeSideBar} />}
+      <div>
+         {
+            <SideNavBar
+               isSideBarOpen={isSideBarOpen}
+               closeSideBar={closeSideBar}
+            />
+         }
          <Header openSideBar={openSideBar} />
          <Outlet />
          <Footer />
-      </>
+      </div>
    );
 }

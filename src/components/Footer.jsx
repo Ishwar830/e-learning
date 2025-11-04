@@ -1,6 +1,6 @@
 export default function Footer() {
    return (
-      <footer className="bg-slate-800 text-white p-8 grid gap-4">
+      <footer className="bg-slate-800 text-white p-4 grid gap-4">
          <section className="grid gap-4">
             <section className="grid gap-2">
                <h3 className="text-lg">About</h3>

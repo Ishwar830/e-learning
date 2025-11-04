@@ -5,13 +5,13 @@ export default function SideNavBar({ isSideBarOpen, closeSideBar }) {
       <>
          {isSideBarOpen && (
             <div
-               className="fixed inset-0 backdrop-blur-sm lg:hidden"
+               className="fixed inset-0 z-10 backdrop-blur-sm lg:hidden"
                onClick={closeSideBar}
             />
          )}
          <aside
             className={`
-        fixed lg:static inset-y-0
+        fixed lg:static inset-y-0 z-20
         w-64 bg-slate-200 shadow-lg
         transform transition-transform duration-300 ease-in-out
         lg:translate-x-0 lg:block

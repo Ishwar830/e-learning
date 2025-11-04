@@ -1,11 +1,20 @@
 import CourseCard from "../components/CourseCard";
 import { ChevronRight } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
+import CourseList from "../components/CourseList";
+import { useEffect } from "react";
 
 function Home() {
+   const { courses } = useLoaderData();
+   const trendingCourses = courses.slice(0, 4);
+
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, []);
+
    return (
       <>
-         <div className="h-[300px] bg-sky-400"></div>
+         <div className="h-[300px] bg-sky-400">Banner</div>
          <div className="p-4 flex justify-center gap-4">
             <button className="font-semibold text-lg border w-24 border-slate-800 p-2 rounded-md">
                Log In
@@ -14,29 +23,23 @@ function Home() {
                Sign Up
             </button>
          </div>
-         <section className="p-4">
-            <div className="flex items-center justify-between py-2 px-4">
-               <h2 className="text-xl">Trending</h2>
-               <p className="flex items-center">
-                  <Link to="/courses">Browse All</Link>
-                  <ChevronRight size={20} />
-               </p>
-            </div>
-            <ul className="grid gap-4">
-               <li>
-                  <Link to="/courses/0">
-                     <CourseCard />
-                  </Link>
-               </li>
-               <li>
-                  <CourseCard />
-               </li>
-               <li>
-                  <CourseCard />
-               </li>
-            </ul>
-         </section>
+         <TrendingCourseList trendingCourses={trendingCourses} />
       </>
+   );
+}
+
+function TrendingCourseList({ trendingCourses }) {
+   return (
+      <section className="p-4">
+         <div className="flex items-center justify-between py-2 px-4">
+            <h2 className="text-xl">Trending</h2>
+            <p className="flex items-center">
+               <Link to="/courses">Browse All</Link>
+               <ChevronRight size={20} />
+            </p>
+         </div>
+         <CourseList courses={trendingCourses} />
+      </section>
    );
 }
 

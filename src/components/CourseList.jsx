@@ -1,14 +1,18 @@
+import { Link } from "react-router";
 import CourseCard from "./CourseCard";
 
-export default function CourseList(){
+export default function CourseList({courses}){
     return (
-       <ul className="grid gap-2">
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
+       <ul className="grid gap-8">
+          {courses.map((course) => {
+            return (
+               <li key={course.id}>
+                  <Link to={`/courses/${course.id}`}>
+                     <CourseCard course={course} />
+                  </Link>
+               </li>
+            );
+          })}
        </ul>
     );
 }
