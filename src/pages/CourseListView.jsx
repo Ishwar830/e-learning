@@ -1,5 +1,5 @@
 import { Search } from "lucide-react";
-import CourseList from "../components/CourseList";
+import CourseList from "../components/course/CourseList";
 import { useLoaderData, useSearchParams } from "react-router";
 import { useEffect, useState } from "react";
 
@@ -32,13 +32,12 @@ export default function CourseListView() {
    }, []);
 
    useEffect(() => {
-      setSearchParams((prev) =>{
+      setSearchParams((prev) => {
          const newParams = new URLSearchParams(prev);
          newParams.set("query", debouncedInput);
          return newParams;
       });
-
-   }, [debouncedInput, setSearchParams])
+   }, [debouncedInput, setSearchParams]);
 
    function handleFilterChange(e) {
       const newParams = new URLSearchParams(searchParams);

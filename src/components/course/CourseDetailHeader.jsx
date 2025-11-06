@@ -14,9 +14,9 @@ export default function CourseDetailHeader({ course }) {
                rating={course.rating}
                reviewCount={course.reviewCount}
                tag={course.tag}
+               studentsEnrolled={course.studentsEnrolled}
+               level={course.level}
             />
-            <p>Level: {course.level}</p>
-            <p>{course.studentsEnrolled} Students Enrolled</p>
             <p>Duration: {course.duration}</p>
             <p>Language: {course.language}</p>
          </section>

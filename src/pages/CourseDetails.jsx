@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router";
 import { useEffect } from "react";
-import CourseContent from "../components/CourseContent";
-import CourseDetailHeader from "../components/CourseDetailHeader";
+import CourseContent from "../components/course/CourseContent";
+import CourseDetailHeader from "../components/course/CourseDetailHeader";
 
 export default function CourseDetail() {
    const { course } = useLoaderData();
@@ -20,9 +20,7 @@ export default function CourseDetail() {
          </div>
          <div>
             <h2 className="text-2xl font-semibold">Description</h2>
-            <p>
-                {course.longDescription}
-            </p>
+            <p>{course.longDescription}</p>
          </div>
          <CourseContent lessons={course.lessons} />
       </div>

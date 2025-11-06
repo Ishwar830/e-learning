@@ -7,6 +7,9 @@ import CourseListView from "./pages/CourseListView.jsx";
 import CourseDetail from "./pages/CourseDetails.jsx";
 import Home from "./pages/Home.jsx";
 import fakeAPI from "./services/fakeAPI.js";
+import AuthLayout from "./layouts/AuthLayout.jsx";
+import Login from "./pages/Login.jsx";
+import SignUp from "./pages/SignUp.jsx";
 
 const router = createBrowserRouter([
    {
@@ -60,6 +63,19 @@ const router = createBrowserRouter([
          },
       ],
    },
+   {
+      Component: AuthLayout,
+      children: [
+         {
+            path: "/login",
+            Component: Login,
+         },
+         {
+            path: "/signup",
+            Component: SignUp
+         }
+      ]
+   }
 ]);
 
 createRoot(document.getElementById("root")).render(

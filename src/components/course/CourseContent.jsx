@@ -1,4 +1,4 @@
-import Accordion from "./Accordion";
+import Accordion from "../Accordion";
 import LessonContent from "./LessonContent";
 
 function Lesson({ lesson }) {

@@ -1,7 +1,6 @@
-import CourseCard from "../components/CourseCard";
 import { ChevronRight } from "lucide-react";
 import { Link, useLoaderData } from "react-router";
-import CourseList from "../components/CourseList";
+import CourseList from "../components/course/CourseList";
 import { useEffect } from "react";
 
 function Home() {
