@@ -49,7 +49,7 @@ export const fakeDB = {
             "Complete guide to user interface and user experience design with Figma",
          longDescription:
             "Learn the principles of great design and how to create stunning user interfaces that users love. Master Figma and design thinking methodology.",
-         instructorId: 3,
+         instructor: "David",
          tag: "BestSeller",
          categoryId: 4,
          level: "Beginner",
@@ -109,60 +109,291 @@ export const fakeDB = {
       },
    ],
 
-   lessons: [
-      {
-         id: 1,
-         courseId: 1,
-         title: "Introduction to React",
-         sections: [
-            "Getting Started",
-            "React Basics",
-            "React Components, React Props",
+   lessonsByCourse: new Map([
+      [
+         1, // React
+         [
+            {
+               id: 1,
+               title: "Introduction to React",
+               sections: [
+                  "What is React?",
+                  "Setting Up Environment",
+                  "JSX Basics",
+                  "Hello World App",
+               ],
+            },
+            {
+               id: 2,
+               title: "Components and Props",
+               sections: [
+                  "Functional Components",
+                  "Props and Data Flow",
+                  "Reusable Components",
+               ],
+            },
+            {
+               id: 3,
+               title: "State and Lifecycle",
+               sections: [
+                  "Understanding State",
+                  "setState Function",
+                  "Lifecycle in Class Components",
+               ],
+            },
+            {
+               id: 4,
+               title: "React Hooks",
+               sections: [
+                  "useState Hook",
+                  "useEffect Hook",
+                  "Creating Custom Hooks",
+               ],
+            },
+            {
+               id: 5,
+               title: "React Router",
+               sections: [
+                  "Routing Basics",
+                  "Nested Routes",
+                  "Handling Navigation",
+               ],
+            },
          ],
-      },
-      {
-         id: 2,
-         courseId: 1,
-         title: "React Hooks",
-         sections: [
-            "Introduction to Hooks",
-            "useState Hook",
-            "useContext Hook",
-            "useEffect Hook",
+      ],
+      [
+         2, // Python
+         [
+            {
+               id: 1,
+               title: "Getting Started with Python",
+               sections: [
+                  "Installing Python",
+                  "Your First Script",
+                  "Understanding Syntax",
+               ],
+            },
+            {
+               id: 2,
+               title: "Data Types and Variables",
+               sections: [
+                  "Numbers and Strings",
+                  "Lists and Tuples",
+                  "Dictionaries and Sets",
+               ],
+            },
+            {
+               id: 3,
+               title: "Control Flow",
+               sections: ["If-Else Statements", "Loops", "List Comprehensions"],
+            },
+            {
+               id: 4,
+               title: "Functions and Modules",
+               sections: [
+                  "Defining Functions",
+                  "Lambda Expressions",
+                  "Importing Modules",
+               ],
+            },
+            {
+               id: 5,
+               title: "File Handling and Exceptions",
+               sections: [
+                  "Reading and Writing Files",
+                  "Handling Errors",
+                  "Using with Statement",
+               ],
+            },
          ],
-      },
-      {
-         id: 3,
-         courseId: 1,
-         title: "Components and Props",
-         sections: [
-            "Introduction to Hooks",
-            "useState Hook",
-            "useContext Hook",
-            "useEffect Hook",
+      ],
+      [
+         3, // UI/UX Design
+         [
+            {
+               id: 1,
+               title: "Introduction to UI/UX",
+               sections: [
+                  "What is UI/UX?",
+                  "Difference between UI and UX",
+                  "Design Thinking Basics",
+               ],
+            },
+            {
+               id: 2,
+               title: "User Research",
+               sections: [
+                  "Understanding Users",
+                  "Creating Personas",
+                  "User Journey Mapping",
+               ],
+            },
+            {
+               id: 3,
+               title: "Wireframing and Prototyping",
+               sections: [
+                  "Low-Fidelity Wireframes",
+                  "Prototyping Tools",
+                  "Usability Testing",
+               ],
+            },
+            {
+               id: 4,
+               title: "Visual Design Principles",
+               sections: [
+                  "Typography",
+                  "Color Theory",
+                  "Layout and Composition",
+               ],
+            },
+            {
+               id: 5,
+               title: "Design Systems and Accessibility",
+               sections: [
+                  "Component Libraries",
+                  "Accessibility Basics",
+                  "Consistency in Design",
+               ],
+            },
          ],
-      },
-      {
-         id: 4,
-         courseId: 1,
-         title: "State and Lifecycle",
-         sections: [
-            "Introduction to Hooks",
-            "useState Hook",
-            "useContext Hook",
-            "useEffect Hook",
+      ],
+      [
+         4, // Node.js
+         [
+            {
+               id: 1,
+               title: "Introduction to Node.js",
+               sections: [
+                  "What is Node.js?",
+                  "Installing Node and npm",
+                  "Running a Simple Script",
+               ],
+            },
+            {
+               id: 2,
+               title: "Modules and Packages",
+               sections: [
+                  "Built-in Modules",
+                  "Creating Custom Modules",
+                  "Using npm Packages",
+               ],
+            },
+            {
+               id: 3,
+               title: "Asynchronous JavaScript",
+               sections: ["Callbacks", "Promises", "Async/Await"],
+            },
+            {
+               id: 4,
+               title: "Express.js Framework",
+               sections: ["Creating a Server", "Routing", "Middleware"],
+            },
+            {
+               id: 5,
+               title: "Working with Databases",
+               sections: [
+                  "MongoDB Connection",
+                  "CRUD Operations",
+                  "Using Mongoose",
+               ],
+            },
          ],
-      },
-      {
-         id: 5,
-         courseId: 1,
-         title: "Handling Events",
-         sections: [
-            "Introduction to Hooks",
-            "useState Hook",
-            "useContext Hook",
-            "useEffect Hook",
+      ],
+      [
+         5, // Flutter
+         [
+            {
+               id: 1,
+               title: "Introduction to Flutter",
+               sections: [
+                  "What is Flutter?",
+                  "Setting Up Environment",
+                  "Understanding Widgets",
+               ],
+            },
+            {
+               id: 2,
+               title: "Layouts and Navigation",
+               sections: [
+                  "Row and Column Widgets",
+                  "Stack and Container",
+                  "Navigator and Routes",
+               ],
+            },
+            {
+               id: 3,
+               title: "State Management",
+               sections: [
+                  "Stateful vs Stateless Widgets",
+                  "Provider Package",
+                  "SetState Usage",
+               ],
+            },
+            {
+               id: 4,
+               title: "Working with APIs",
+               sections: [
+                  "HTTP Requests",
+                  "Fetching JSON Data",
+                  "Displaying Lists",
+               ],
+            },
+            {
+               id: 5,
+               title: "Deploying Flutter Apps",
+               sections: [
+                  "Building for Android/iOS",
+                  "Debug vs Release Mode",
+                  "Publishing the App",
+               ],
+            },
          ],
-      },
-   ],
+      ],
+      [
+         6, // Digital Marketing
+         [
+            {
+               id: 1,
+               title: "Introduction to Digital Marketing",
+               sections: [
+                  "What is Digital Marketing?",
+                  "Traditional vs Digital",
+                  "Key Marketing Channels",
+               ],
+            },
+            {
+               id: 2,
+               title: "SEO Fundamentals",
+               sections: ["On-Page SEO", "Off-Page SEO", "Keyword Research"],
+            },
+            {
+               id: 3,
+               title: "Social Media Marketing",
+               sections: [
+                  "Creating Content Strategy",
+                  "Managing Social Campaigns",
+                  "Analytics and Engagement",
+               ],
+            },
+            {
+               id: 4,
+               title: "Email and Content Marketing",
+               sections: [
+                  "Building Mailing Lists",
+                  "Effective Copywriting",
+                  "Automation Tools",
+               ],
+            },
+            {
+               id: 5,
+               title: "Analytics and Ads",
+               sections: [
+                  "Google Analytics Basics",
+                  "Running Paid Campaigns",
+                  "Measuring ROI",
+               ],
+            },
+         ],
+      ],
+   ]),
 };

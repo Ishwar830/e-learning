@@ -42,7 +42,7 @@ const fakeAPI = {
          };
       }
 
-      const lessons = fakeDB.lessons;
+      const lessons = fakeDB.lessonsByCourse.get(course.id);
 
       return {
          success: true,
@@ -124,7 +124,7 @@ const fakeAPI = {
    // Enrollments
    getUserEnrollments: async (userId) => {
       await delay();
-      const response = await this.getCurrentUser(userId);
+      const response = await fakeAPI.getCurrentUser(userId);
 
       if (response.success) {
          const user = response.data;

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 function Home() {
    const { courses } = useLoaderData();
-   const trendingCourses = courses.slice(0, 4);
+   const trendingCourses = courses.slice(0, 3);
 
    useEffect(() => {
       window.scrollTo(0, 0);

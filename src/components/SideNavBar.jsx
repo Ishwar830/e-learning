@@ -1,4 +1,4 @@
-import { X } from "lucide-react";
+import { X, LayoutDashboard } from "lucide-react";
 import { Link } from "react-router";
 
 export default function SideNavBar({ isSideBarOpen, closeSideBar }) {
@@ -20,20 +20,11 @@ export default function SideNavBar({ isSideBarOpen, closeSideBar }) {
       `}
          >
             <nav className="p-4 ">
-               <ul>
-                  <li>
-                     <Link to="/">Home</Link>
-                  </li>
-                  <li>
-                     <Link to="/login">Login</Link>
-                  </li>
-                  <li>
-                     <Link to="/signup">Signup</Link>
-                  </li>
-                  <li>
-                     <Link to="/">My Profile</Link>
-                  </li>
-               </ul>
+               <div className="flex gap-2 mb-8 items-center">
+                  <LayoutDashboard size={32} fill="black" />
+                  <span className="text-2xl font-semibold">Dashboard</span>
+               </div>
+               <NavList closeSideBar={closeSideBar} />
             </nav>
             {isSideBarOpen && (
                <div className="top-4 -right-16 absolute flex justify-center size-12 rounded-full bg-slate-300">
@@ -44,5 +35,56 @@ export default function SideNavBar({ isSideBarOpen, closeSideBar }) {
             )}
          </aside>
       </>
+   );
+}
+
+function NavList({ closeSideBar }) {
+   const navItems = [
+      {
+         title: "Home",
+         navLink: "/",
+      },
+      {
+         title: "Login",
+         navLink: "/login",
+      },
+      {
+         title: "Signup",
+         navLink: "/signup",
+      },
+      {
+         title: "Browse Courses",
+         navLink: "/courses",
+      },
+      {
+         title: "My Profile",
+         navLink: "/profile",
+      },
+   ];
+
+   return (
+      <ul className="grid gap-4">
+         {navItems.map((item) => (
+            <NavItem
+               key={item.title}
+               title={item.title}
+               navLink={item.navLink}
+               closeSideBar={closeSideBar}
+            />
+         ))}
+      </ul>
+   );
+}
+
+function NavItem({ title, navLink, closeSideBar }) {
+   return (
+      <li className="hover:bg-slate-500 hover:text-white p-2"
+         onClick={(e) => {
+            e.stopPropagation();
+            closeSideBar();
+         }}
+      >
+         <Link className="block w-full" to={navLink}>{title}</Link>
+      </li>
    );
 }

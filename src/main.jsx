@@ -11,6 +11,7 @@ import AuthLayout from "./layouts/AuthLayout.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import AuthProvider from "./components/AuthProvider.jsx";
+import Profile from "./pages/Profile.jsx";
 
 const courseListLoader = async ({ request }) => {
    const url = new URL(request.url);
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
             path: "courses/:courseId",
             Component: CourseDetail,
             loader: courseLoader,
+         },
+         {
+            path: "profile",
+            Component: Profile,
          },
       ],
    },
