@@ -38,8 +38,19 @@ export default function AuthProvider({ children }) {
 
    const userLogout = () => setUser(null);
 
+   const enrollCourse = async (courseId) => {
+      if (user) {
+         const res = await fakeAPI.enrollCourse(user.id, courseId);
+         setUser({ ...user });
+         return res;
+      }
+      return { success: false };
+   };
+
    return (
-      <AuthContext value={{user, userLogin, userSignup, userLogout}}>
+      <AuthContext
+         value={{ user, userLogin, userSignup, userLogout, enrollCourse }}
+      >
          {children}
       </AuthContext>
    );

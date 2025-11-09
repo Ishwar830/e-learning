@@ -106,7 +106,7 @@ const fakeAPI = {
    // Get current user
    getCurrentUser: async (userId) => {
       await delay();
-      const user = fakeDB.users.find((u) => u.id === parseInt(userId));
+      const user = fakeDB.users.find((u) => u.id === userId);
 
       if (!user) {
          return {
@@ -147,23 +147,31 @@ const fakeAPI = {
    enrollCourse: async (userId, courseId) => {
       await delay(800);
 
-      const existing = fakeDB.enrollments.find(
-         (e) => e.userId === userId && e.courseId === courseId
-      );
+      const res = await fakeAPI.getCurrentUser(userId);
 
-      if (existing) {
+      if(res.success){
+         const user = res.data;
+         const existing = user.enrolledCourses.find(
+            (e) => e.userId === userId && e.courseId === courseId
+         );
+
+         if (existing) {
+            return {
+               success: false,
+               error: "Already enrolled in this course",
+            };
+         }
+
+         user.enrolledCourses.push(courseId);
+         console.log("enrolled");
          return {
-            success: false,
-            error: "Already enrolled in this course",
+            success: true,
+            message: "Successfully enrolled!",
          };
       }
 
-      fakeDB.users.enrolledCourses.push[courseId];
-
-      return {
-         success: true,
-         message: "Successfully enrolled!",
-      };
+      return res;
+      
    },
 };
 

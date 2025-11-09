@@ -11,6 +11,8 @@ export default function Profile() {
    const [isLoading, setIsLoading] = useState(true);
 
    useEffect(() => {
+      window.scrollTo(0, 0);
+
       const handleEnrolledCourses = async () => {
          const res = await fakeAPI.getUserEnrollments(user.id);
          if (res.success) setEnrolledCourses(res.data);
@@ -41,7 +43,10 @@ export default function Profile() {
          <section className="min-h-[300px] grid grid-rows-[min-content_1fr] ">
             <h2 className="mb-4 text-lg">My Courses</h2>
             {isLoading ? (
-               <LoaderCircle size={32} className="animate-spin place-self-center"></LoaderCircle>
+               <LoaderCircle
+                  size={32}
+                  className="animate-spin place-self-center"
+               ></LoaderCircle>
             ) : (
                <CourseList courses={enrolledCourses}></CourseList>
             )}

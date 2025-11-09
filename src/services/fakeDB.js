@@ -1,7 +1,7 @@
 export const fakeDB = {
    users: [
       {
-         id: 1,
+         id: "john",
          name: "John Doe",
          email: "john@example.com",
          password: "12345678",

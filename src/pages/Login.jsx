@@ -17,7 +17,6 @@ export default function LoginForm() {
       else {
          setFormError(res.error);
       }
-      console.log(res);
    };
 
    return (
