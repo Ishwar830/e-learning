@@ -12,10 +12,10 @@ export default function SideNavBar({ isSideBarOpen, closeSideBar }) {
          )}
          <aside
             className={`
-        fixed lg:static inset-y-0 z-20
-        w-64 bg-slate-200 shadow-lg
+        fixed lg:hidden inset-y-0 z-20
+        w-[70%] bg-slate-200 shadow-lg
         transform transition-transform duration-300 ease-in-out
-        lg:translate-x-0 lg:block
+        lg:translate-x-0
         ${isSideBarOpen ? "translate-x-0" : "-translate-x-full"}
       `}
          >
@@ -27,8 +27,11 @@ export default function SideNavBar({ isSideBarOpen, closeSideBar }) {
                <NavList closeSideBar={closeSideBar} />
             </nav>
             {isSideBarOpen && (
-               <div className="top-4 -right-16 absolute flex justify-center size-12 rounded-full bg-slate-300">
-                  <button onClick={closeSideBar}>
+               <div
+                  onClick={closeSideBar}
+                  className="top-4 -right-16 absolute flex justify-center size-12 rounded-full bg-slate-300"
+               >
+                  <button>
                      <X />
                   </button>
                </div>

@@ -1,18 +1,20 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import CourseCard from "./CourseCard";
 
-export default function CourseList({courses}){
-    return (
-       <ul className="grid gap-8">
-          {courses.map((course) => {
+export default function CourseList({ courses }) {
+   const navigate = useNavigate();
+   return (
+      <ul className="grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+         {courses.map((course) => {
             return (
-               <li key={course.id}>
-                  <Link to={`/courses/${course.id}`}>
-                     <CourseCard course={course} />
-                  </Link>
+               <li
+                  key={course.id}
+                  onClick={() => navigate(`/courses/${course.id}`)}
+               >
+                  <CourseCard course={course} />
                </li>
             );
-          })}
-       </ul>
-    );
+         })}
+      </ul>
+   );
 }

@@ -19,7 +19,9 @@ export default function RootLayout() {
             />
          }
          <Header openSideBar={openSideBar} />
-         <Outlet />
+         <main>
+            <Outlet />
+         </main>
          <Footer />
       </div>
    );

@@ -11,7 +11,7 @@ export default function CourseDetail() {
    }, []);
 
    return (
-      <div className="p-4 grid gap-4">
+      <div className="p-4 lg:px-[clamp(16px,10%,80px)] grid gap-4">
          <CourseDetailHeader course={course} />
          <div className="place-self-center">
             <button className="bg-slate-800 text-white p-2 text-lg font-semibold rounded-md">
