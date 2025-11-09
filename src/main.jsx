@@ -10,6 +10,29 @@ import fakeAPI from "./services/fakeAPI.js";
 import AuthLayout from "./layouts/AuthLayout.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
+import AuthProvider from "./components/AuthProvider.jsx";
+
+const courseListLoader = async ({ request }) => {
+   const url = new URL(request.url);
+   const filters = {
+      search: url.searchParams.get("query") || "",
+      level: url.searchParams.get("level") || "",
+      sortBy: url.searchParams.get("sortBy") || "",
+   };
+   const response = await fakeAPI.getCourses(filters);
+   if (response.success) {
+      return { courses: response.data };
+   }
+   throw new Error();
+};
+
+const courseLoader = async ({ params }) => {
+   const response = await fakeAPI.getCourseById(params.courseId);
+   if (response.success) {
+      return { course: response.data };
+   }
+   throw new Error();
+};
 
 const router = createBrowserRouter([
    {
@@ -19,47 +42,17 @@ const router = createBrowserRouter([
          {
             index: true,
             Component: Home,
-            loader: async ({ request }) => {
-               const url = new URL(request.url);
-               const filters = {
-                  search: url.searchParams.get("query") || "",
-                  level: url.searchParams.get("level") || "",
-                  sortBy: url.searchParams.get("sortBy") || "",
-               };
-               const response = await fakeAPI.getCourses(filters);
-               if (response.success) {
-                  return { courses: response.data };
-               }
-               throw new Error();
-            },
+            loader: courseListLoader,
          },
          {
             path: "courses",
             Component: CourseListView,
-            loader: async ({ request }) => {
-               const url = new URL(request.url);
-               const filters = {
-                  search: url.searchParams.get("query") || "",
-                  level: url.searchParams.get("level") || "",
-                  sortBy: url.searchParams.get("sortBy") || "",
-               };
-               const response = await fakeAPI.getCourses(filters);
-               if (response.success) {
-                  return { courses: response.data };
-               }
-               throw new Error();
-            },
+            loader: courseListLoader,
          },
          {
             path: "courses/:courseId",
             Component: CourseDetail,
-            loader: async ({ params }) => {
-               const response = await fakeAPI.getCourseById(params.courseId);
-               if (response.success) {
-                  return { course: response.data };
-               }
-               throw new Error();
-            },
+            loader: courseLoader,
          },
       ],
    },
@@ -72,14 +65,16 @@ const router = createBrowserRouter([
          },
          {
             path: "/signup",
-            Component: SignUp
-         }
-      ]
-   }
+            Component: SignUp,
+         },
+      ],
+   },
 ]);
 
 createRoot(document.getElementById("root")).render(
    <StrictMode>
-      <RouterProvider router={router} />
+      <AuthProvider>
+         <RouterProvider router={router} />
+      </AuthProvider>
    </StrictMode>
 );

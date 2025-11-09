@@ -13,9 +13,8 @@ const fakeAPI = {
       }
 
       if (filters.search) {
-         courses = courses.filter(
-            (c) =>
-               c.title.toLowerCase().includes(filters.search.toLowerCase())
+         courses = courses.filter((c) =>
+            c.title.toLowerCase().includes(filters.search.toLowerCase())
          );
       }
 
@@ -34,9 +33,7 @@ const fakeAPI = {
 
    getCourseById: async (id) => {
       await delay();
-      const course = fakeDB.courses.find(
-         (c) => c.id === parseInt(id)
-      );
+      const course = fakeDB.courses.find((c) => c.id === parseInt(id));
 
       if (!course) {
          return {
@@ -56,11 +53,12 @@ const fakeAPI = {
       };
    },
 
-   
    // Authentication
-   login: async (email, password) => {
+   authenticateUser: async (email, password) => {
       await delay();
-      const user = fakeDB.users.find((u) => (u.email === email && u.password === password));
+      const user = fakeDB.users.find(
+         (u) => u.email === email && u.password === password
+      );
 
       if (!user) {
          return {
@@ -75,6 +73,33 @@ const fakeAPI = {
             user,
             token: "fake-jwt-token-" + user.id,
          },
+      };
+   },
+
+   createUser: async (userName, email, password) => {
+      await delay();
+      // validation
+      const doesUserExist = fakeDB.users.find((u) => u.email === email);
+      if (doesUserExist) {
+         return {
+            success: false,
+            error: "User Email already exist",
+         };
+      }
+
+      const user = {
+         name: userName,
+         id: crypto.randomUUID(),
+         email,
+         password,
+         enrolledCourses: [],
+      };
+
+      fakeDB.users.push(user);
+
+      return {
+         success: true,
+         data: { user, token: "fake-jwt-token-" + user.id },
       };
    },
 
@@ -96,13 +121,12 @@ const fakeAPI = {
       };
    },
 
-
    // Enrollments
    getUserEnrollments: async (userId) => {
       await delay();
       const response = await this.getCurrentUser(userId);
 
-      if(response.success){
+      if (response.success) {
          const user = response.data;
          const enrolledCourses = fakeDB.courses.filter((c) =>
             user.enrolledCourses.includes(c.id)
@@ -115,8 +139,8 @@ const fakeAPI = {
       }
 
       return {
-         success: false
-      }
+         success: false,
+      };
    },
 
    // Enroll in a course

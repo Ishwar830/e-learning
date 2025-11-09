@@ -15,12 +15,16 @@ function Home() {
       <>
          <div className="h-[300px] bg-sky-400">Banner</div>
          <div className="p-4 flex justify-center gap-4">
-            <button className="font-semibold text-lg border w-24 border-slate-800 p-2 rounded-md">
-               Log In
-            </button>
-            <button className="font-semibold text-lg border w-24 border-slate-800 p-2 rounded-md bg-gray-800 text-white">
-               Sign Up
-            </button>
+            <Link to="/login">
+               <button className="font-semibold text-lg border w-24 border-slate-800 p-2 rounded-md">
+                  Log In
+               </button>
+            </Link>
+            <Link to="/signup">
+               <button className="font-semibold text-lg border w-24 border-slate-800 p-2 rounded-md bg-gray-800 text-white">
+                  Sign Up
+               </button>
+            </Link>
          </div>
          <TrendingCourseList trendingCourses={trendingCourses} />
       </>

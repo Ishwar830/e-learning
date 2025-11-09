@@ -2,20 +2,8 @@ import { Search } from "lucide-react";
 import CourseList from "../components/course/CourseList";
 import { useLoaderData, useSearchParams } from "react-router";
 import { useEffect, useState } from "react";
+import useDebouncedValue from "../hooks/useDebouncedValue";
 
-function useDebouncedValue(value, delay = 300) {
-   const [debouncedValue, setDebouncedValue] = useState(value);
-
-   useEffect(() => {
-      const timerId = setTimeout(() => {
-         setDebouncedValue(value);
-      }, delay);
-
-      return () => clearTimeout(timerId);
-   }, [value, delay]);
-
-   return debouncedValue;
-}
 
 export default function CourseListView() {
    const { courses } = useLoaderData();

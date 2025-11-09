@@ -4,7 +4,7 @@ export default function EmailInput({ email, onEmailChange }) {
          <label htmlFor="user-mail">Email:</label>
          <input
             value={email}
-            onChange={onEmailChange}
+            onChange={(e) => onEmailChange(e.target.value)}
             className="border rounded-sm p-1"
             type="email"
             name="user-mail"

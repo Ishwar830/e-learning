@@ -1,4 +1,5 @@
 import { X } from "lucide-react";
+import { Link } from "react-router";
 
 export default function SideNavBar({ isSideBarOpen, closeSideBar }) {
    return (
@@ -20,11 +21,18 @@ export default function SideNavBar({ isSideBarOpen, closeSideBar }) {
          >
             <nav className="p-4 ">
                <ul>
-                  <li>link-1</li>
-                  <li>link-2</li>
-                  <li>link-3</li>
-                  <li>link-4</li>
-                  <li>link-5</li>
+                  <li>
+                     <Link to="/">Home</Link>
+                  </li>
+                  <li>
+                     <Link to="/login">Login</Link>
+                  </li>
+                  <li>
+                     <Link to="/signup">Signup</Link>
+                  </li>
+                  <li>
+                     <Link to="/">My Profile</Link>
+                  </li>
                </ul>
             </nav>
             {isSideBarOpen && (
